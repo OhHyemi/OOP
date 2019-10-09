@@ -287,6 +287,35 @@ public:
 			}
 			return false;
 		}
+		bool checkOtherBlockRight()
+		{
+			for (int h = getHeight() - 1; h >= 0; h--)
+			{
+				for (int w = 0; w < getWidth(); w++)
+				{
+					if (sprites[current].c_str()[h * getWidth() + w] == '\xB0'
+						&& gameBoard.getShape()[(getPos().y + h) * (gameBoard.getWidth())
+						+ (getPos().x) + w ] == '\xB0')
+						return true;
+				}
+			}
+			return false;
+		}
+		bool checkOtherBlockLeft()
+		{
+			for (int h = getHeight() - 1; h >= 0; h--)
+			{
+				for (int w = 0; w < getWidth(); w++)
+				{
+					if (sprites[current].c_str()[h * getWidth() + w] == '\xB0'
+						&& gameBoard.getShape()[(getPos().y + h) * (gameBoard.getWidth())
+						+ (getPos().x) + w - 2] == '\xB0')
+						return true;
+				}
+				
+			}
+			return false;
+		}
 
 		bool isStacked() { return stacked; }
 
@@ -294,7 +323,6 @@ public:
 
 			if (stacked)
 			{
-				//gameBoard.checkBlockLine();
 				stacked = false;
 				getPos().x = 5;
 				getPos().y = 1;
@@ -302,19 +330,15 @@ public:
 			}
 
 			if (Input::GetKeyDown(KeyCode::Right)) {
-				if (!inRectR() )
-					getPos().x--;
-
-				getPos().x++;
+				if (inRectR() && !checkOtherBlockRight() )
+					getPos().x++;
 			}
 			if (Input::GetKeyDown(KeyCode::Left)) {
-				if (!inRectL() )
-					getPos().x++;
-
-				getPos().x--;
+				if (inRectL() && !checkOtherBlockLeft() )	
+					getPos().x--;
 			}
 			if (Input::GetKeyDown(KeyCode::Up)) {
-				if (ableRotation())
+				if (ableRotation() && !checkOtherBlockRight() && !checkOtherBlockLeft())
 				{
 					current = (current + 1) % sprites.size();
 					setShape(sprites[current].c_str());
@@ -323,8 +347,8 @@ public:
 			if (Input::GetKeyDown(KeyCode::Down)) {
 				if (checkOtherBlock())
 					return;
-				if (getPos().y + 2 < gameBoard.getPos().y + gameBoard.getHeight())
-					getPos().y += 2;
+				if (getPos().y + 1 < gameBoard.getPos().y + gameBoard.getHeight())
+					getPos().y += 1;
 			}
 			if (checkOtherBlock())
 			{
@@ -408,9 +432,10 @@ public:
 
 			//ui
 			screen.drawRect(Position(15, 0), 20, 8);//다음블록알려주는판테두리
-			screen.draw(nextblock.c_str(), nextblock.size(),1, Position(20, 2));
-			screen.draw((yourScore + to_string(score + gameboard.getBonus())).c_str(), to_string(score).size() +12 , 1, Position(15, 10));
+			screen.draw(nextblock.c_str(), nextblock.size(),1, Position(20, 2));//다음 블록 
 			screen.drawBlock(blocks[next]->getShape().c_str(), blocks[next]->getWidth(),blocks[next]->getHeight(), Position(22,3));
+			screen.draw((yourScore + to_string(score + gameboard.getBonus())).c_str(), to_string(score).size() +12 , 1, Position(15, 10));//점수
+			
 		
 			screen.render();
 			
