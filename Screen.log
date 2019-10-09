@@ -1,0 +1,9 @@
+﻿  main.cpp
+c:\users\오혜미\desktop\학교3-2\객체지향프로그래밍2\테트리스\oop-2019_2\테트리스\screen\utils.h(61): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\오혜미\desktop\학교3-2\객체지향프로그래밍2\테트리스\oop-2019_2\테트리스\screen\main.cpp(392): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다.
+  1 of 389 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  Screen.vcxproj -> C:\Users\오혜미\Desktop\학교3-2\객체지향프로그래밍2\테트리스\OOP-2019_2\테트리스\Release\Screen.exe
