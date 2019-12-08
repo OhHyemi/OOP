@@ -1,0 +1,4 @@
+﻿  몬스터월드.cpp
+c:\users\오혜미\desktop\oop\몬스터월드\몬스터월드\utils.h(61): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\오혜미\desktop\oop\몬스터월드\몬스터월드\몬스터월드.cpp(367): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  몬스터월드.vcxproj -> C:\Users\오혜미\Desktop\OOP\몬스터월드\Debug\몬스터월드.exe
